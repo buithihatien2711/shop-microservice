@@ -7,34 +7,34 @@ using Product.API.Repositories.Interfaces;
 
 namespace Product.API.Repositories
 {
-    public class ProductRepository : RepositoryBaseAsync<CatalogProduct, long, ProductContext>, IProductRepository
+    public class ProductRepository : RepositoryBaseAsync<ProductEntity, long, ProductContext>, IProductRepository
     {
         public ProductRepository(ProductContext dbContext, IUnitOfWork<ProductContext> unitOfWork) : base(dbContext, unitOfWork)
         {
             
         }
 
-        public Task<CatalogProduct> GetProduct(long id)
+        public Task<ProductEntity> GetProduct(long id)
         {
             return GetByIdAsync(id);
         }
 
-        public Task<CatalogProduct> GetProductByNo(string productNo)
+        public Task<ProductEntity> GetProductByNo(string productNo)
         {
             return FindByCondition(p => p.No.Equals(productNo)).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<CatalogProduct>> GetProducts()
+        public async Task<IEnumerable<ProductEntity>> GetProducts()
         {
             return await FindAll().ToListAsync();
         }
 
-        public Task CreateProduct(CatalogProduct product)
+        public Task CreateProduct(ProductEntity product)
         {
             return CreateAsync(product);
         }
 
-        public Task UpdateProduct(CatalogProduct product)
+        public Task UpdateProduct(ProductEntity product)
         {
             return UpdateAsync(product);
         }

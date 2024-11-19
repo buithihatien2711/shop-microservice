@@ -8,12 +8,12 @@ namespace Product.API.Persistence
     {
         public ProductContext(DbContextOptions<ProductContext> options) : base(options) { }
 
-        public DbSet<CatalogProduct> Products { get; set; }
+        public DbSet<ProductEntity> Products { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<CatalogProduct>().HasIndex(x => x.No).IsUnique();
+            modelBuilder.Entity<ProductEntity>().HasIndex(x => x.No).IsUnique();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -9,11 +9,11 @@ namespace Product.API
     {
         public MappingProfile()
         {
-            CreateMap<CatalogProduct, ProductDto>();
+            CreateMap<ProductEntity, ProductDto>();
             
-            CreateMap<CreateProductDto, CatalogProduct>();
+            CreateMap<CreateProductDto, ProductEntity>();
 
-            CreateMap<UpdateProductDto, CatalogProduct>()
+            CreateMap<UpdateProductDto, ProductEntity>()
                 .IgnoreAllNonExsiting();
         }
     }

@@ -15,9 +15,9 @@ namespace Product.API.Persistence
             }
         }
 
-        private static IEnumerable<CatalogProduct> GetCatalogProducts()
+        private static IEnumerable<ProductEntity> GetCatalogProducts()
         {
-            return new List<CatalogProduct>()
+            return new List<ProductEntity>()
             {
                 new()
                 {
