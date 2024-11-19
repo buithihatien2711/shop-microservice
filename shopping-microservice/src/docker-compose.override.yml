@@ -31,7 +31,7 @@ services:
     environment:
         - POSTGES_USER=admin
         - POSTGES_PASSWORD=admin1234
-        - POSTGES_DB=DiscountDb
+        - POSTGES_DB=CustomerDb
     restart: always
     volumes:
         - postgres_data:/var/lib/postgresql/data
@@ -112,10 +112,22 @@ services:
     environment:
         - ASPNETCORE_ENVIRONMENT=Development
         - ASPNETCORE_URLS=http://+:80
-        - "ConnectionStrings:DefaultConnectionString=Server=localhost;Port=3306;Database=ProductDB;Uid=root;Pwd=Passw0rD!;"
+        - "ConnectionStrings:DefaultConnectionString=Server=productdb;Port=3306;Database=ProductDB;Uid=root;Pwd=Passw0rD!;"
     depends_on:
         - productdb
     ports:
         - "6002:80"
+    restart: always
+
+  customer.api:
+    container_name: customer.api
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - ASPNETCORE_URLS=http://+:80
+        - "ConnectionStrings:DefaultConnectionString=Server=customerdb;Port=5432;Database=CustomerDb;User Id=admin;Password=admin1234"
+    depends_on:
+        - productdb
+    ports:
+        - "6003:80"
     restart: always
                                                                                                                                                
