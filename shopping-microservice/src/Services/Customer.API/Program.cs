@@ -28,22 +28,13 @@ try
         options => options.UseNpgsql(connectionString));
 
     builder.Services.AddScoped<ICustomerRepository, CustomerRepository>()
-        .AddScoped(typeof(IRepositoryBaseAsync<,,>), typeof(RepositoryBaseAsync<,,>))
-        .AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>))
+        .AddScoped(typeof(IRepositoryQueryBase<,,>), typeof(RepositoryQueryBase<,,>))
         .AddScoped<ICustomerService, CustomerService>();
 
     var app = builder.Build();
 
     app.MapGet("/", () => "Welcom to Customer API");
-    app.MapGet("/api/customers", async (ICustomerService customerService) => await customerService.GetCustomersAsync());
     app.MapGet("/api/customers/{username}", async (string username, ICustomerService customerService) => await customerService.GetCustomerByUserNameAsync(username));
-    app.MapPost("/api/customers", (CreateCustomerDto createCustomerDto, ICustomerService customerService) =>  customerService.CreateCustomerAsync(createCustomerDto));
-    app.MapPut("/api/customers", async (UpdateCustomerDto updateCustomerDto, ICustomerService customerService) => await customerService.UpdateCustomerAsync(updateCustomerDto));
-    app.MapDelete("/api/customers", async (int customerId, ICustomerService customerService) => await customerService.DeleteCustomerAsync(customerId));
-
-    //app.MapPost("/", () => "Welcom to Customer API");
-    //app.MapPut("/", () => "Welcom to Customer API");
-    //app.MapDelete("/", () => "Welcom to Customer API");
 
     // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
