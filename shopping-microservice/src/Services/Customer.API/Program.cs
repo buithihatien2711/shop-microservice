@@ -1,5 +1,5 @@
 using Common.Logging;
-using Contracts.Common;
+using Contracts.Common.Interfaces;
 using Customer.API.Persistence;
 using Customer.API.Repositories;
 using Customer.API.Repositories.Interfaces;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
-namespace Contracts.Common
+namespace Contracts.Common.Interfaces
 {
     public interface IRepositoryQueryBase<T, K, TContext> where T : EntityBase<K>
         where TContext : DbContext

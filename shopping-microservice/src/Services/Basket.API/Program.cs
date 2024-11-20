@@ -14,6 +14,8 @@ try
     builder.Host.UseSerilog(Serilogger.Configure);
     builder.Host.AddAppConfigurations();
 
+    builder.Services.ConfigureServices();
+    builder.Services.ConfigureRedis(builder.Configuration);
     builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
 
     builder.Services.AddControllers();
