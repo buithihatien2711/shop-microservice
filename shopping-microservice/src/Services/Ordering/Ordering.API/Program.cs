@@ -1,4 +1,5 @@
 using Ordering.Infrastructure;
+using Ordering.Infrastructure.Persistence;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +22,13 @@ try
     {
         app.UseSwagger();
         app.UseSwaggerUI();
+    }
+
+    using(var scope = app.Services.CreateScope())
+    {
+        var orderContextSeed = scope.ServiceProvider.GetRequiredService<OrderContextSeed>();
+        await orderContextSeed.InitialiseAsync();
+        await orderContextSeed.SeedAsync();
     }
 
     app.UseHttpsRedirection();
