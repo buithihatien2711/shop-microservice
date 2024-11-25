@@ -1,3 +1,6 @@
+using Common.Logging;
+using Ordering.API.Extensions;
+using Ordering.Application;
 using Ordering.Infrastructure;
 using Ordering.Infrastructure.Persistence;
 using Serilog;
@@ -7,7 +10,10 @@ Log.Information("Start Ordering API up");
 
 try
 {
+    builder.Host.UseSerilog(Serilogger.Configure);
     // Add services to the container.
+    builder.Services.AddConfigurationSettings(builder.Configuration);
+    builder.Services.AddApplicationServices();
     builder.Services.AddInfrastructureServices(builder.Configuration);
 
     builder.Services.AddControllers();
