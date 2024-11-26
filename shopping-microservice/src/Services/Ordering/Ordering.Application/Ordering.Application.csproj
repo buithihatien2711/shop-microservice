@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\V1\Orders\CommandHandlers\**" />
+    <EmbeddedResource Remove="Features\V1\Orders\CommandHandlers\**" />
+    <None Remove="Features\V1\Orders\CommandHandlers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
@@ -22,8 +28,6 @@
     <Folder Include="Features\V2\Orders\CommandHandlers\" />
     <Folder Include="Features\V2\Orders\Commands\" />
     <Folder Include="Features\V2\Orders\Queries\" />
-    <Folder Include="Features\V1\Orders\Commands\" />
-    <Folder Include="Features\V1\Orders\CommandHandlers\" />
   </ItemGroup>
 
 </Project>
